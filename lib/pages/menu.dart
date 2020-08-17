@@ -80,7 +80,9 @@ class _HomeState extends State<Home> {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.info),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, '/info');
+        },
         backgroundColor: Colors.blue[300],
       ),
     );
