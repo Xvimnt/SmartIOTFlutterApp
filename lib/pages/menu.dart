@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'dart:convert';
 
 class Home extends StatefulWidget {
   @override
@@ -6,12 +8,23 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  bool load = true;
+  int weight = 50, waterLevel = 3;
 
-  bool hasSomething;
-  int weight, waterLevel;
-  
+  void getData() async {
+    Response response = await get('/enpointLoad');
+    Map data = jsonDecode(response.body);
+
+    this.load = data['load'];
+    this.weight = data['weight'];
+    this.waterLevel = data['waterLevel'];
+  }
+
   @override
   Widget build(BuildContext context) {
+    // POST
+    //getData();
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Buzon Inteligente'),
@@ -34,7 +47,7 @@ class _HomeState extends State<Home> {
                           Icons.mail_outline,
                           size: 100,
                         ),
-                        Text('vacio')
+                        if (load) Text('Lleno') else Text('vacio')
                       ],
                     )
                   ],
@@ -47,7 +60,7 @@ class _HomeState extends State<Home> {
                           Icons.line_weight,
                           size: 100,
                         ),
-                        Text('peso')
+                        Text('peso: ' + this.weight.toString())
                       ],
                     )
                   ],
@@ -67,7 +80,7 @@ class _HomeState extends State<Home> {
                             Icons.opacity,
                             size: 100,
                           ),
-                          Text('lleno')
+                          Text('Nivel de Agua: ' + this.waterLevel.toString())
                         ],
                       )
                     ],

@@ -24,7 +24,7 @@ class _InfoState extends State<Info> {
             SizedBox(height: 10,),
             Text('Selvin Estuardo Icu Son - 201325657'),
             SizedBox(height: 10,),
-            Text('Javier Alejandro Monterroso Lopez - 201700831'),
+            Text('Ricardo Antonio Alvarado Ramirez - 201603157'),
           ],
         ),
       ),
