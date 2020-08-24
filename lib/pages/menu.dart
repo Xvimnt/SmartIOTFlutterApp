@@ -12,9 +12,9 @@ class _HomeState extends State<Home> {
   int weight = 50, waterLevel = 3;
 
   void getData() async {
-    Response response = await get('/enpointLoad');
+    Response response = await get('http://167.71.93.195:3000/getstats');
     Map data = jsonDecode(response.body);
-
+    print(data);
     this.load = data['load'];
     this.weight = data['weight'];
     this.waterLevel = data['waterLevel'];
@@ -23,7 +23,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     // POST
-    //getData();
+    getData();
 
     return Scaffold(
       appBar: AppBar(
