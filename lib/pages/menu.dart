@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
@@ -9,14 +10,15 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   bool load = true;
-  int weight = 50, waterLevel = 3;
+  double weight = 50.5;
+  int waterLevel = 3;
 
   void getData() async {
     Response response = await get('http://167.71.93.195:3000/getstats');
     Map data = jsonDecode(response.body);
     print(data);
     this.load = data['load'];
-    this.weight = data['weight'];
+    this.weight =double.parse(data['weight'].toString());
     this.waterLevel = data['waterLevel'];
   }
 
@@ -33,7 +35,7 @@ class _HomeState extends State<Home> {
       ),
       backgroundColor: Colors.blue[50],
       body: Padding(
-        padding: EdgeInsets.symmetric(vertical: 100, horizontal: 25),
+        padding: EdgeInsets.symmetric(vertical: 70, horizontal: 25),
         child: Column(
           children: <Widget>[
             Row(
@@ -44,7 +46,7 @@ class _HomeState extends State<Home> {
                     Column(
                       children: <Widget>[
                         Icon(
-                          Icons.mail_outline,
+                          Icons.markunread_mailbox,
                           size: 100,
                         ),
                         if (load) Text('Lleno') else Text('vacio')
@@ -57,10 +59,10 @@ class _HomeState extends State<Home> {
                     Column(
                       children: <Widget>[
                         Icon(
-                          Icons.line_weight,
+                          Icons.move_to_inbox,
                           size: 100,
                         ),
-                        Text('peso: ' + this.weight.toString())
+                        Text('Peso: ' + this.weight.toString())
                       ],
                     )
                   ],
@@ -77,7 +79,7 @@ class _HomeState extends State<Home> {
                       Column(
                         children: <Widget>[
                           Icon(
-                            Icons.opacity,
+                            Icons.local_drink,
                             size: 100,
                           ),
                           Text('Nivel de Agua: ' + this.waterLevel.toString())
