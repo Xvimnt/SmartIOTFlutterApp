@@ -1,4 +1,4 @@
-# mailbox
+# Smart App (IOT Framework)
 
 App to manage things across the internet using an API and http requests
 
